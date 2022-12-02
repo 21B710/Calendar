@@ -1,8 +1,10 @@
 package jp.ac.shohoku.calendar;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.browse.MediaBrowser;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -106,5 +108,13 @@ public class MainActivity extends AppCompatActivity {
                 c.close();
             }
         });
+        @Override
+        public void onItemClick Object AdapterView;
+        Object View;
+        (AdapterView<?> parent, View view, int position, long id) {
+            Intent intent = new Intent(getApplicationContext(), ContentActivity.class);
+            intent.putExtra("date", mCalendarAdapter.getItem(position).toString());
+            startActivity(intent);
+        }
     }
 }
