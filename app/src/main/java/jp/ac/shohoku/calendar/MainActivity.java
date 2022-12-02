@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.GridView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,12 +23,41 @@ public class MainActivity extends AppCompatActivity {
     Button deleteAllBtn;
     Button showBtn;
 
+    private TextView titleText;
+    private Button prevButton, nextButton;
+    private CalendarAdapter mCalendarAdapter;
+    private GridView calendarGridView;
+
     TextView disp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        titleText = findViewById(R.id.titleText);
+        prevButton = findViewById(R.id.prevButton);
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCalendarAdapter.prevMonth();
+                titleText.setText(mCalendarAdapter.getTitle());
+            }
+        });
+        nextButton = findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCalendarAdapter.nextMonth();
+                titleText.setText(mCalendarAdapter.getTitle());
+            }
+        });
+        calendarGridView = findViewById(R.id.calendarGridView);
+        mCalendarAdapter = new CalendarAdapter(this);
+        calendarGridView.setAdapter(mCalendarAdapter);
+        titleText.setText(mCalendarAdapter.getTitle());
+    }
+
         //部品の取得
+
         addName = (EditText)findViewById(R.id.addDate);
         addAge = (EditText)findViewById(R.id.addItem);
         addBtn = (Button)findViewById(R.id.addBtn);

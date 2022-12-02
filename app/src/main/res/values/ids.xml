@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="titleText" type="id" />
+    <item name="prevButton" type="id" />
+    <item name="nextButton" type="id" />
+    <item name="calendarGridView" type="id" />
+</resources>
