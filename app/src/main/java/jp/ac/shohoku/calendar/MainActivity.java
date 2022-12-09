@@ -15,7 +15,7 @@ import android.widget.GridView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity<view> extends AppCompatActivity {
+public class MainActivity<view> extends AppCompatActivity implements AdapterView.OnItemClickListener{
     EditText addName;
     EditText addAge;
     Button addBtn;
@@ -36,6 +36,7 @@ public class MainActivity<view> extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         titleText = findViewById(R.id.titleText);
         prevButton = findViewById(R.id.prevButton);
+
         prevButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,14 +56,15 @@ public class MainActivity<view> extends AppCompatActivity {
         mCalendarAdapter = new CalendarAdapter(this);
         calendarGridView.setAdapter(mCalendarAdapter);
         titleText.setText(mCalendarAdapter.getTitle());
-    }
 
+        calendarGridView.setOnItemClickListener(this);
+
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(getApplicationContext(), ContentActivity.class);
         intent.putExtra("date", mCalendarAdapter.getItem(position).toString());
         startActivity(intent);
-    }
     }
 }
