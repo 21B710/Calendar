@@ -67,4 +67,5 @@ public class MainActivity<view> extends AppCompatActivity implements AdapterView
         intent.putExtra("date", mCalendarAdapter.getItem(position).toString());
         startActivity(intent);
     }
+
 }
